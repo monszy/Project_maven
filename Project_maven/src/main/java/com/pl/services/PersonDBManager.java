@@ -1,5 +1,6 @@
 package com.pl.services;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 import com.pl.monszy.*;
@@ -18,6 +19,15 @@ public class PersonDBManager {
 
 	public PersonDBManager() 
 	{
+		Properties props = new Properties();
+		try {
+			props.load(ClassLoader.getSystemResourceAsStream("com/pl/monszy/jdbc.properties"));
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 		try 
 		{
 			conn = DriverManager
@@ -74,7 +84,7 @@ public class PersonDBManager {
 			e.printStackTrace();
 		}
 
-	}
+	}  
 
 	public List<Person> getAllPersons() 
 	{

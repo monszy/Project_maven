@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 import com.pl.monszy.PriceException;
 import com.pl.services.PersonDBManager;
+import com.pl.services.ProductDBManager;
 
 import events.*;
 
@@ -88,6 +89,19 @@ public class Main {
 		//
 		Person person1 = new Person("Szymon", "Stasiak", null);
 		managerDB.addPerson(person1);
+		
+		ProductDBManager ProductmanagerDB = new ProductDBManager();
+		
+		for (Product product : ProductmanagerDB.getAllProducts()){
+			System.out.println(product.getName());
+		}
+		
+		
+		//
+		Product product1 = new Product("Kojiak", "best camera ever", ProductType.Camera, 100 );
+		ProductmanagerDB.addProduct(product1);
+		
+		
 		
 		IProductProcesses backupProduct = new BackupProduct();
 		ProcesProduct procesProduct = new ProcesProduct();
