@@ -20,4 +20,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>lib-maven_repo</name>
+			<type>2</type>
+			<location>/opt/devel/maven_repo</location>
+		</link>
+	</linkedResources>
 </projectDescription>

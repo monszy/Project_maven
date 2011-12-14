@@ -6,6 +6,8 @@ import java.util.*;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 import com.pl.monszy.PriceException;
+import com.pl.services.PersonDBManager;
+
 import events.*;
 
 public class Main {
@@ -74,7 +76,19 @@ public class Main {
 		ArrayList<Person> Persons = new ArrayList<Person>();
 		Persons.add(new Person("Jan", "Nowak", products));
 		Persons.add(new Person("Gabrys", "Szmel", products));
-
+		
+		// ---------------- DB Manager
+		PersonDBManager managerDB = new PersonDBManager();
+		
+		for (Person person : managerDB.getAllPersons()){
+			System.out.println(person.getImie());
+		}
+		
+		
+		//
+		Person person1 = new Person("Szymon", "Stasiak", null);
+		managerDB.addPerson(person1);
+		
 		IProductProcesses backupProduct = new BackupProduct();
 		ProcesProduct procesProduct = new ProcesProduct();
 		IProductProcesses discountProduct = new DiscountProduct();
