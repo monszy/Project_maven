@@ -119,6 +119,8 @@ public class Main {
 		ProductmanagerDB.addProduct(product3);
 		Product product4 = new Product("DELLik", "no a nie ?", ProductType.Computer, 130 );
 		ProductmanagerDB.addProduct(product4);
+		Product product5 = new Product("Fuji", "drugi taki tam sobie", ProductType.Film, 120 );
+		ProductmanagerDB.addProduct(product5);
 			/*
 		ProductmanagerDB.deleteProduct(ProductmanagerDB.findProductByName("Fuji"));
 		System.out.println("Usunieto product o nazwie Fuji");
@@ -129,8 +131,10 @@ public class Main {
 			 */		
 		//
 		ConnectionDBManager connectionmanagerDB = new ConnectionDBManager();
-		
-		
+		connectionmanagerDB.addproductToPerson(personmanagerDB.findPersonByName("Szymon"), ProductmanagerDB.findProductByName("Fuji"));
+		// select * from product, person, connection where product_id = product.id and person_id=person.id;
+		connectionmanagerDB.addproductToPerson(personmanagerDB.findPersonByName("Michal"), ProductmanagerDB.findProductByName("Fuji"));
+		// select * from product, person, connection where product_id = product.id and person_id=person.id and person.imie = 'Michal';
 		//------------------------------------------------------//
 		
 		IProductProcesses backupProduct = new BackupProduct();
