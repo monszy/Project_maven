@@ -6,8 +6,8 @@ import java.util.*;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 import com.pl.monszy.PriceException;
-import com.pl.services.PersonDBManager;
-import com.pl.services.ProductDBManager;
+import com.pl.services.*;
+
 
 import events.*;
 
@@ -80,35 +80,56 @@ public class Main {
 		
 		// ---------------- DB Manager-------------------------//
 		
-		PersonDBManager managerDB = new PersonDBManager();
-		
-		for (Person person : managerDB.getAllPersons()){
+		PersonDBManager personmanagerDB = new PersonDBManager();
+		personmanagerDB.deleteAllPerson();
+		for (Person person : personmanagerDB.getAllPersons()){
 			System.out.println(person.getImie());
 		}
 		
+		/*
+		personmanagerDB.deletePerson(personmanagerDB.findPersonByName("Szymon"));
+		System.out.println("Usunieto osobe o imieniu Szymon");
+		for (Person person : personmanagerDB.getAllPersons())
+		{
+			System.out.println(person.getImie() + "  " +person.getNazwisko());
+		}
+		*/
 		
 		
 		Person person1 = new Person("Szymon", "Stasiak", null);
-		managerDB.addPerson(person1);
+		personmanagerDB.addPerson(person1);
 		Person person2 = new Person("Michal", "Gabrysiak", null);
-		managerDB.addPerson(person2);
+		personmanagerDB.addPerson(person2);
 		Person person3 = new Person("Rafal", "Potocki", null);
-		managerDB.addPerson(person3);
+		personmanagerDB.addPerson(person3);
 		
 		ProductDBManager ProductmanagerDB = new ProductDBManager();
-		
+		ProductmanagerDB.deleteAllProduct();
 		for (Product product : ProductmanagerDB.getAllProducts()){
-			System.out.println(product.getName());
+			System.out.println(product.getName()+ " " + product.getInformation() + " " + product.getProductType() + " " + product.getProductPrice());
 		}
 		
 		
 		//
 		Product product1 = new Product("Kojiak", "best camera ever", ProductType.Camera, 100 );
 		ProductmanagerDB.addProduct(product1);
-		Product product2 = new Product("Fuji", "jakis tam sobie jest", ProductType.Film, 100 );
+		Product product2 = new Product("Fuji", "jakis tam sobie jest", ProductType.Film, 30 );
 		ProductmanagerDB.addProduct(product2);
-		Product product3 = new Product("DELL", "best computer on the market", ProductType.Computer, 100 );
+		Product product3 = new Product("DELL", "best computer on the market", ProductType.Computer, 1020 );
 		ProductmanagerDB.addProduct(product3);
+		Product product4 = new Product("DELLik", "no a nie ?", ProductType.Computer, 130 );
+		ProductmanagerDB.addProduct(product4);
+			/*
+		ProductmanagerDB.deleteProduct(ProductmanagerDB.findProductByName("Fuji"));
+		System.out.println("Usunieto product o nazwie Fuji");
+		for (Product product : ProductmanagerDB.getAllProducts())
+		{
+			System.out.println(product.getName()+ " " + product.getInformation() + " " + product.getProductType() + " " + product.getProductPrice());
+		}
+			 */		
+		//
+		ConnectionDBManager connectionmanagerDB = new ConnectionDBManager();
+		
 		
 		//------------------------------------------------------//
 		
