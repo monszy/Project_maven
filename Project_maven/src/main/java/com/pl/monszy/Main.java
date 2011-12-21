@@ -78,7 +78,8 @@ public class Main {
 		Persons.add(new Person("Jan", "Nowak", products));
 		Persons.add(new Person("Gabrys", "Szmel", products));
 		
-		// ---------------- DB Manager
+		// ---------------- DB Manager-------------------------//
+		
 		PersonDBManager managerDB = new PersonDBManager();
 		
 		for (Person person : managerDB.getAllPersons()){
@@ -86,9 +87,13 @@ public class Main {
 		}
 		
 		
-		//
+		
 		Person person1 = new Person("Szymon", "Stasiak", null);
 		managerDB.addPerson(person1);
+		Person person2 = new Person("Michal", "Gabrysiak", null);
+		managerDB.addPerson(person2);
+		Person person3 = new Person("Rafal", "Potocki", null);
+		managerDB.addPerson(person3);
 		
 		ProductDBManager ProductmanagerDB = new ProductDBManager();
 		
@@ -100,8 +105,12 @@ public class Main {
 		//
 		Product product1 = new Product("Kojiak", "best camera ever", ProductType.Camera, 100 );
 		ProductmanagerDB.addProduct(product1);
+		Product product2 = new Product("Fuji", "jakis tam sobie jest", ProductType.Film, 100 );
+		ProductmanagerDB.addProduct(product2);
+		Product product3 = new Product("DELL", "best computer on the market", ProductType.Computer, 100 );
+		ProductmanagerDB.addProduct(product3);
 		
-		
+		//------------------------------------------------------//
 		
 		IProductProcesses backupProduct = new BackupProduct();
 		ProcesProduct procesProduct = new ProcesProduct();

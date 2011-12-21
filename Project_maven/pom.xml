@@ -10,14 +10,49 @@
   <name>Project_maven</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
+   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <build>
- 
+  
+  <resources>
+      <resource>
+        <directory>src/resources/java</directory>
+      </resource>
+  </resources>
+  
     <plugins>
-      <plugin>
+    
+    
+	<plugin>
+  		<groupId>org.apache.maven.plugins</groupId>
+  		<artifactId>maven-assembly-plugin</artifactId>
+
+    	<executions>
+     		<execution>
+         		<goals>
+          			<goal>attached</goal>
+         		</goals>
+
+         		<phase>package</phase>
+
+        			<configuration>
+          		 		<descriptorRefs>
+           		 			<descriptorRef>jar-with-dependencies</descriptorRef>
+          				</descriptorRefs>
+         		 		<archive>
+           		 			<manifest>
+             					<mainClass>com.pl.monszy.Main</mainClass>
+          		  			</manifest>
+         		 		</archive>
+        			</configuration>
+     		 </execution>
+  		</executions>
+	</plugin>
+
+ 
+    <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
@@ -25,30 +60,32 @@
           <source>1.6</source>
           <target>1.6</target>
         </configuration>
-      </plugin>
+    </plugin>
+      
+      
     </plugins>
-   
+    
   </build>
 
   <dependencies>
     <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-        <version>4.10</version>
-        <scope>test</scope>
+     	<groupId>junit</groupId>
+     	<artifactId>junit</artifactId>
+    	<version>4.10</version>
+    	<scope>test</scope>
     </dependency>
 
-    <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.16</version>
-    </dependency>
+	<dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.16</version>
+	</dependency>
 
-    <dependency>
-        <groupId>org.hsqldb</groupId>
-        <artifactId>hsqldb</artifactId>
-        <version>2.2.4</version>
-    </dependency>
+	<dependency>
+		<groupId>org.hsqldb</groupId>
+		<artifactId>hsqldb</artifactId>
+		<version>2.2.4</version>
+	</dependency>
 
   </dependencies>
 </project>

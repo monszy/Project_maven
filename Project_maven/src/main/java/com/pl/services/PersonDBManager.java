@@ -120,7 +120,7 @@ public class PersonDBManager {
 		}
 	}
 
-	public List<Integer> findGameByName(String name)
+	public List<Integer> findPersonByName(String name)
 	{
 		try 
 		{
