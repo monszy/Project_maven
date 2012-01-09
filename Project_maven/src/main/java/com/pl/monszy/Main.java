@@ -135,6 +135,23 @@ public class Main {
 		// select * from product, person, connection where product_id = product.id and person_id=person.id;
 		connectionmanagerDB.addproductToPerson(personmanagerDB.findPersonByName("Michal"), ProductmanagerDB.findProductByName("Fuji"));
 		// select * from product, person, connection where product_id = product.id and person_id=person.id and person.imie = 'Michal';
+		
+		ProductmanagerDB.printProductWithCondition(connectionmanagerDB.getConnection(personmanagerDB.findPersonByName("Szymon")), new condition() {
+			
+			@Override
+			public boolean getCondition(Product product) {
+					if (product.getProductPrice() > 20)
+						return true;
+				return false;
+			}
+		}
+		
+	);
+
+		
+		
+		
+		
 		//------------------------------------------------------//
 		
 		IProductProcesses backupProduct = new BackupProduct();

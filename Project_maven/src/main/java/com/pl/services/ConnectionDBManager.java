@@ -6,7 +6,7 @@ package com.pl.services;
 	import java.sql.*;
 	import java.util.*;
 
-	import com.pl.monszy.*;
+import com.pl.monszy.*;
 
 	public class ConnectionDBManager {
 
@@ -14,6 +14,7 @@ package com.pl.services;
 		private Statement stmt;
 		private PreparedStatement addproductToPersonStmt;
 		private PreparedStatement deleteAllproductFromPersonStmt;
+		private PreparedStatement getConnectionStmt;
 
 		public ConnectionDBManager() 
 		{
@@ -50,7 +51,8 @@ package com.pl.services;
 				}
 
 				addproductToPersonStmt = conn.prepareStatement("INSERT INTO connection (person_id, product_id) VALUES (?, ?)");
-
+				
+				getConnectionStmt = conn.prepareStatement("SELECT Product.name, Product.productType, Product.Information, Product.price FROM Product, Connection WHERE person_id = ? and product_id = Product.id");
 				deleteAllproductFromPersonStmt = conn.prepareStatement("DELETE FROM connection WHERE person_id = ?");
 
 			} 
@@ -100,6 +102,37 @@ package com.pl.services;
 				e.printStackTrace();
 			}
 
+		}
+		public List<Product> getConnection (List<Integer> listPersonId) throws PriceException
+		{
+			List<Product> Products = new ArrayList<Product>();
+			try 
+			{
+				for (Integer personID : listPersonId)
+				{
+					
+					getConnectionStmt.setInt(1, personID);
+					ResultSet rs = getConnectionStmt.executeQuery();
+					while (rs.next()) 
+					{
+						ProductType ProductType = null;
+						if (rs.getString("ProductType").equals("Camera"))
+							ProductType = ProductType.Camera;
+						if (rs.getString("ProductType").equals("Computer"))
+							ProductType = ProductType.Computer;
+						if (rs.getString("ProductType").equals("Film"))
+							ProductType = ProductType.Film;
+
+						Products.add(new Product(rs.getString("name"),rs.getString("information"),ProductType,rs.getInt("price")));
+					}
+				}
+			} 
+			catch (SQLException e) 
+			{
+
+				e.printStackTrace();
+			}
+			return Products;
 		}
 
 

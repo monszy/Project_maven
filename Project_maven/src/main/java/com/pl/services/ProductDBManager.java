@@ -166,6 +166,18 @@ public class ProductDBManager {
 			e.printStackTrace();
 		}
 	}
+	List<Product> Products = new ArrayList<Product>();
+	public void printProductWithCondition(List<Product> listProduct,condition condition)
+	{
+		for (Product product : listProduct)
+		{
+			if (condition.getCondition(product))
+			{
+				System.out.println("Name: " + product.getName() + "\tProductType: " + product.getProductType() + "\tInformation: " + product.getInformation() + "\tPrice: " + product.getProductPrice());
+			}
+		}
+	}
+
 
 
 
