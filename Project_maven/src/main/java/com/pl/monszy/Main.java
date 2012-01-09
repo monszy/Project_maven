@@ -140,9 +140,8 @@ public class Main {
 			
 			@Override
 			public boolean getCondition(Product product) {
-					if (product.getProductPrice() > 20)
-						return true;
-				return false;
+					return (product.getProductPrice() > 20);
+						
 			}
 		}
 		
@@ -280,6 +279,7 @@ public class Main {
 				System.out.println("\nProsze wybrac z menu (1-10) \n");
 			}
 		} while (choice != 10);
+		
 	}
-
+ 
 }

@@ -31,7 +31,7 @@ public class PersonDBManager {
 		try 
 		{
 			conn = DriverManager
-					.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+					.getConnection(props.getProperty("url"));
 
 			stmt = conn.createStatement();
 			boolean personTableExists = false;

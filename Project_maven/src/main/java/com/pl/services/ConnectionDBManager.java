@@ -13,6 +13,7 @@ import com.pl.monszy.*;
 		private Connection conn;
 		private Statement stmt;
 		private PreparedStatement addproductToPersonStmt;
+		private PreparedStatement deleteAllconnectionStmt;
 		private PreparedStatement deleteAllproductFromPersonStmt;
 		private PreparedStatement getConnectionStmt;
 
@@ -53,6 +54,9 @@ import com.pl.monszy.*;
 				addproductToPersonStmt = conn.prepareStatement("INSERT INTO connection (person_id, product_id) VALUES (?, ?)");
 				
 				getConnectionStmt = conn.prepareStatement("SELECT Product.name, Product.productType, Product.Information, Product.price FROM Product, Connection WHERE person_id = ? and product_id = Product.id");
+				
+				deleteAllconnectionStmt = conn.prepareStatement("DELETE FROM connection");
+				
 				deleteAllproductFromPersonStmt = conn.prepareStatement("DELETE FROM connection WHERE person_id = ?");
 
 			} 
@@ -103,6 +107,21 @@ import com.pl.monszy.*;
 			}
 
 		}
+		
+		public void deleteAllconnetion() 
+		{
+			try 
+			{
+					deleteAllconnectionStmt.executeUpdate();
+			} 
+			catch (SQLException e) 
+			{
+
+				e.printStackTrace();
+			}
+
+		}
+		
 		public List<Product> getConnection (List<Integer> listPersonId) throws PriceException
 		{
 			List<Product> Products = new ArrayList<Product>();

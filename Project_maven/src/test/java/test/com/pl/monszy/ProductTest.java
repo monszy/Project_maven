@@ -68,15 +68,16 @@ public class ProductTest {
 	public void testAddProduct() {
 		assertTrue(products.size() == 1);
 	}
-	
+	/*
 	@Test
+	
 	public void testEditlistproducts() throws PriceException, IOException {
 		
 		System.out.println("Przy zmianie prosze podac cene 12 aby test przeszedl poprawnie");
 		Product.editlistproducts(products, 1);		
 		assertTrue(products.get(0).getPrice() == 12);
 			
-	}
+	} */
 
 	@Test
 	public void testShowsize() {
